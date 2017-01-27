@@ -10,6 +10,7 @@ import dto.Role;
 import dto.UserDTO;
 
 public class DBTester {
+	//TODO refactor as JUnit test???
 	public static void main(String[] args) {
 		IUserDAO iDAO = new UserDAODiscImpl();
 		UserDTO newUser = new UserDTO();
