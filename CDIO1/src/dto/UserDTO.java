@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDTO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1926840253471298190L;
+
+	private static final long serialVersionUID = 4545864587995944260L;
 	private int	userId;                     
 	private String userName;                
 	private String ini;                 
-	private String cpr;                 
-	private String password;
-	private List<Role> roles;
+	private List<String> roles;
+	//TODO Add relevant fields
 	
 	public UserDTO() {
 		this.roles = new ArrayList<>();
@@ -38,26 +35,15 @@ public class UserDTO implements Serializable{
 	public void setIni(String ini) {
 		this.ini = ini;
 	}
-	public String getCpr() {
-		return cpr;
-	}
-	public void setCpr(String cpr) {
-		this.cpr = cpr;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public List<Role> getRoles() {
+
+	public List<String> getRoles() {
 		return roles;
 	}
-	public void setRoles(List<Role> roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 	
-	public void addRole(Role role){
+	public void addRole(String role){
 		this.roles.add(role);
 	}
 	/**
@@ -65,16 +51,15 @@ public class UserDTO implements Serializable{
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
-	public boolean removeRole(Role role){
+	public boolean removeRole(String role){
 		return this.roles.remove(role);
 	}
 
 	@Override
 	public String toString() {
-		return "UserDTO [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", cpr=" + cpr + ", password="
-				+ password + ", roles=" + roles + "]";
+		return "UserDTO [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", roles=" + roles + "]";
 	}
 	
-
+	
 	
 }

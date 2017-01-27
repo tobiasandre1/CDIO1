@@ -4,9 +4,8 @@ package test;
 import java.util.List;
 
 import dal.IUserDAO;
-import dal.UserDAODiscImpl;
 import dal.IUserDAO.DALException;
-import dto.Role;
+import dal.UserDAODiscImpl;
 import dto.UserDTO;
 
 public class DBTester {
@@ -15,11 +14,9 @@ public class DBTester {
 		IUserDAO iDAO = new UserDAODiscImpl();
 		UserDTO newUser = new UserDTO();
 		printUsers(iDAO);
-		newUser.setCpr("testCPR");
-		newUser.setCpr("1234567890");
+		//TODO test new fields...
 		newUser.setIni("test");
-		newUser.setPassword("password");
-		newUser.addRole(new Role(0, "Admin"));
+		newUser.addRole("Admin");
 		newUser.setUserName("testName");
 		newUser.setUserId(0);
 		try {
