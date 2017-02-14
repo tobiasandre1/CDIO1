@@ -1,5 +1,9 @@
 package pl;
 
+import java.util.Scanner;
+
+import dto.UserDTO;
+
 public class TUI {
 	
 	public static void main(String [] args){
