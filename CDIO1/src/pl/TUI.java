@@ -17,7 +17,7 @@ public class TUI {
 	public void menu(){
 		Scanner input = new Scanner(System.in); //Make new scanner for user inputs
 		
-		int choice = 0;
+		String choice = "";
 		boolean looping = true;
 		
 		while(looping){
@@ -30,33 +30,30 @@ public class TUI {
 			System.out.println("4. Delete an existing user");
 			System.out.println("5. Close the program");
 			
-			//Check if user input is an int
-			if(input.hasNextInt()){
-				choice = input.nextInt(); //Assign this value as a choice
-			}
+				choice = input.next(); //Assign this value as a choice
 			/*
 			 * Determine which method to run. 
 			 * If the choice does not correspond to a case, 
 			 * the user is given the option to type a new number
 			 */
 			switch(choice){
-			case 1: looping = false;
+			case "1": looping = false;
 					input.close(); //Close the input
 					createUser();  
 					break;
-			case 2: looping = false;
+			case "2": looping = false;
 					input.close(); //Close the input
 					showUsers();
 					break;
-			case 3: looping = false;
+			case "3": looping = false;
 					input.close(); //Close the input
 					updateUser();
 					break;
-			case 4: looping = false;
+			case "4": looping = false;
 					input.close(); //Close the input
 					deleteUser();
 					break;
-			case 5: looping = false;
+			case "5": looping = false;
 					input.close(); //Close the input
 					endProgram();
 					break;
