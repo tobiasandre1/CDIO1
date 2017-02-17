@@ -82,6 +82,7 @@ public class TUI {
 	
 	public void endProgram(){
 		
+		System.exit(0);
 	}
 
 }
