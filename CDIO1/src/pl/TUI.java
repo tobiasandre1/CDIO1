@@ -2,6 +2,7 @@ package pl;
 
 import java.util.Scanner;
 
+import fl.MiddleMan;
 import dto.UserDTO;
 
 public class TUI {
@@ -64,7 +65,23 @@ public class TUI {
 		}
 	}
 	
+	MiddleMan connector = new MiddleMan();
+	
 	public void createUser(){
+		
+		int ID = 0;
+		
+		UserDTO user = new UserDTO();
+		
+		user.setUserId(ID);
+		user.setUserName("Filler");
+		user.setPassword("Filler");
+		user.setIni("F");
+		user.setCpr(123);
+		
+		connector.createUser(user);
+		
+		ID++;
 		
 	}
 	
@@ -77,6 +94,8 @@ public class TUI {
 	}
 	
 	public void deleteUser(){
+		
+		connector.deleteUser(0);
 		
 	}
 	

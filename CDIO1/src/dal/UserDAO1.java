@@ -19,6 +19,8 @@ public class UserDAO1 implements IUserDAO{
 	
 	public void createUser(UserDTO user){
 		
+		userList.add(user);
+		
 	}
 	
 	public void updateUser(UserDTO user){
@@ -26,6 +28,8 @@ public class UserDAO1 implements IUserDAO{
 	}
 	
 	public void deleteUser(int userId){
+		
+		userList.remove(userId);
 		
 	}
 
