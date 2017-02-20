@@ -41,20 +41,20 @@ public class TUI {
 			 * the user is given the option to type a new number
 			 */
 			switch(choice){
-			case "1": looping = false;
-					input.close(); //Close the input
+			case "1": //looping = false;
+					//input.close(); //Close the input
 					createUser();  
 					break;
-			case "2": looping = false;
-					input.close(); //Close the input
+			case "2": //looping = false;
+					//input.close(); //Close the input
 					showUsers();
 					break;
-			case "3": looping = false;
-					input.close(); //Close the input
+			case "3": //looping = false;
+					//input.close(); //Close the input
 					updateUser();
 					break;
-			case "4": looping = false;
-					input.close(); //Close the input
+			case "4": //looping = false;
+					//input.close(); //Close the input
 					deleteUser();
 					break;
 			case "5": looping = false;
