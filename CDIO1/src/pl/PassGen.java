@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class PassGen {
 
-	public String PassGenerator() {
+	public String Pass() {
 	// TODO Auto-generated method stub
 				
 		//Random for deciding Uppercase, Lowercase, next is number? etc.

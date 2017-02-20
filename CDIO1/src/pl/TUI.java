@@ -6,8 +6,10 @@ import java.util.Scanner;
 import dal.IUserDAO.DALException;
 import fl.MiddleMan;
 import dto.UserDTO;
+import pl.PassGen;
 
 public class TUI {
+	
 	MiddleMan connector = new MiddleMan();
 	
 	public static void main(String [] args) throws DALException{
@@ -73,10 +75,11 @@ public class TUI {
 		int ID = 0;
 		
 		UserDTO user = new UserDTO();
+		PassGen Pass = new PassGen();
 		
 		user.setUserId(ID);
 		user.setUserName("Filler");
-		user.setPassword("Filler");
+		user.setPassword(Pass.Pass());
 		user.setIni("F");
 		user.setCpr(123);
 		
