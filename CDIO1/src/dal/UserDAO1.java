@@ -10,11 +10,11 @@ public class UserDAO1 implements IUserDAO{
 	
 	
 	public UserDTO getUser(int userId){
-		return null;
+		return userList.get(userId);
 	}
 	
 	public List<UserDTO> getUserList(){
-		return null;
+		return userList;
 	}
 	
 	public void createUser(UserDTO user){
