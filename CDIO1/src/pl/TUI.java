@@ -2,12 +2,13 @@ package pl;
 
 import java.util.Scanner;
 
+import dal.IUserDAO.DALException;
 import fl.MiddleMan;
 import dto.UserDTO;
 
 public class TUI {
 	
-	public static void main(String [] args){
+	public static void main(String [] args) throws DALException{
 		TUI textInterface = new TUI();
 		textInterface.menu();
 	}
@@ -15,7 +16,7 @@ public class TUI {
 	public TUI(){
 	}
 	
-	public void menu(){
+	public void menu() throws DALException{
 		Scanner input = new Scanner(System.in); //Make new scanner for user inputs
 		
 		String choice = "";
@@ -67,7 +68,7 @@ public class TUI {
 	
 	MiddleMan connector = new MiddleMan();
 	
-	public void createUser(){
+	public void createUser() throws DALException{
 		
 		int ID = 0;
 		
@@ -93,7 +94,7 @@ public class TUI {
 		
 	}
 	
-	public void deleteUser(){
+	public void deleteUser() throws DALException{
 		
 		connector.deleteUser(0);
 		
