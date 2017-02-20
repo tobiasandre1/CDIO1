@@ -9,15 +9,15 @@ import dal.IUserDAO.DALException;
 
 public class MiddleMan {
 		
-	IUserDAO Data = new UserDAO1();
+	IUserDAO data = new UserDAO1();
 	
-	public List<UserDTO> getUserList(){
-		return null;
+	public List<UserDTO> getUserList() throws DALException{
+		return data.getUserList();
 	}
 	
 	public void createUser(UserDTO user) throws DALException{
 		
-		Data.createUser(user);
+		data.createUser(user);
 		
 	}
 	
@@ -27,7 +27,7 @@ public class MiddleMan {
 	
 	public void deleteUser(int userId) throws DALException{
 		
-		Data.deleteUser(userId);
+		data.deleteUser(userId);
 		
 	}
 }

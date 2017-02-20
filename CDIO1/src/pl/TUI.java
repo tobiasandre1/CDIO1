@@ -86,7 +86,7 @@ public class TUI {
 		
 	}
 	
-	public void showUsers(){
+	public void showUsers() throws DALException{
 		List<UserDTO> list = connector.getUserList();
 		UserDTO temp;
 		
@@ -97,6 +97,7 @@ public class TUI {
 				
 			}
 		}
+		System.out.println("\n");
 	}
 	
 	public void updateUser(){
