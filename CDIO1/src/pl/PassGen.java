@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class PassGen {
 
+	/*
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -57,5 +58,5 @@ public class PassGen {
 		System.out.println(PasswordFull);
 		
 	}
-
+	 */
 }
