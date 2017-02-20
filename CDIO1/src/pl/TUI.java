@@ -1,5 +1,6 @@
 package pl;
 
+import java.util.List;
 import java.util.Scanner;
 
 import dal.IUserDAO.DALException;
@@ -86,7 +87,16 @@ public class TUI {
 	}
 	
 	public void showUsers(){
+		List<UserDTO> list = connector.getUserList();
+		UserDTO temp;
 		
+		for(int i=0; i<list.size(); i++){
+			temp = list.get(i);
+			if(temp!=null){
+				System.out.println(temp);
+				
+			}
+		}
 	}
 	
 	public void updateUser(){
