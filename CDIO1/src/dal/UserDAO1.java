@@ -6,7 +6,7 @@ import java.util.List;
 import dto.UserDTO;
 
 public class UserDAO1 implements IUserDAO{
-	List<UserDTO> userList = new ArrayList();
+	List<UserDTO> userList = new ArrayList<UserDTO>();
 	
 	
 	public UserDTO getUser(int userId){
