@@ -9,8 +9,7 @@ public class PassGen {
 		
 		Random gen = new Random();
 		char[] Pass  = new char[10];
-		
-		
+				
 		String Alphabet = "abcdefghijklmnopqrstuvwxyz";
 		String Numbers = "1234567890";
 		
