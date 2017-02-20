@@ -5,7 +5,8 @@ import java.util.Random;
 public class PassGen {
 
 	public String PassGenerator() {
-		// TODO Auto-generated method stub
+	// TODO Auto-generated method stub
+		
 		
 		//Random for deciding Uppercase, Lowercase, next is number? etc.
 		//Char array where all letters and numbers will be stored before final result
@@ -22,7 +23,8 @@ public class PassGen {
 		
 		for (int i = 0; i < 10; i++){
 		
-			//Decides if next char is gonna be a number or letter (NextType) and if letter - if its gonna be upper/lower -case
+			//Decides if next char is going to be a number or letter (NextType), and if its a letter 
+			//- if its going to be upper/lower -case
 			Boolean NextUpper = gen.nextBoolean();
 			Boolean NextType = gen.nextBoolean();
 			
