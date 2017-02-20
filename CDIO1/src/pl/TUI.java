@@ -7,6 +7,7 @@ import fl.MiddleMan;
 import dto.UserDTO;
 
 public class TUI {
+	MiddleMan connector = new MiddleMan();
 	
 	public static void main(String [] args) throws DALException{
 		TUI textInterface = new TUI();
@@ -65,8 +66,6 @@ public class TUI {
 			}
 		}
 	}
-	
-	MiddleMan connector = new MiddleMan();
 	
 	public void createUser() throws DALException{
 		
