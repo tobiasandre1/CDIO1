@@ -6,8 +6,7 @@ public class PassGen {
 
 	public String PassGenerator() {
 	// TODO Auto-generated method stub
-		
-		
+				
 		//Random for deciding Uppercase, Lowercase, next is number? etc.
 		//Char array where all letters and numbers will be stored before final result
 		Random gen = new Random();
