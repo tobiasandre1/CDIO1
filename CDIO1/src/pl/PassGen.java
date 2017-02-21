@@ -44,7 +44,7 @@ public class PassGen {
 							//Choses a random char in alphabet and puts it into array
 							//Makes sure the char is gonna be uppercase
 							Alphabet = Alphabet.toUpperCase();
-							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()-1));
+							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()));
 							UCC++;
 							
 						} 
@@ -52,7 +52,7 @@ public class PassGen {
 							
 							//Same as uppercase but ensures lowercase
 							Alphabet = Alphabet.toLowerCase();
-							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()-1));
+							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()));
 							LCC++;
 							
 						}
@@ -61,7 +61,7 @@ public class PassGen {
 					else if (NC < 4) {
 						
 						//If the next char isnt gonna be a letter its gonna be a number
-						Pass[i] = Numbers.charAt(gen.nextInt(Numbers.length()-1));
+						Pass[i] = Numbers.charAt(gen.nextInt(Numbers.length()));
 						NC++;
 						
 					}
