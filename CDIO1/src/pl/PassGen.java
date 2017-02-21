@@ -23,66 +23,69 @@ public class PassGen {
 		
 		//Final result
 		String PasswordFull = "";
-		
-		//If there is a whitespace in final result it will try again
-		while (GhostLetter == true){
 			
 			for (int i = 0; i < 10; i++){
 				
-				//Decides if next char is going to be a number or letter (NextType), and if its a letter 
-				//- if its going to be upper/lower -case
-				Boolean NextUpper = gen.nextBoolean();
-				Boolean NextType = gen.nextBoolean();
-				
-				//NextType = True = Letter
-				if (NextType == true){
+				//Loop for failsafe
+				GhostLetter = true;
+				while (GhostLetter == true){
 					
-					//NextUpper = True = Uppercase
-					if ((NextUpper == true && UCC < 3) || (NextUpper == false && LCC == 3 && UCC < 3)){
+					//Decides if next char is going to be a number or letter (NextType), and if its a letter 
+					//- if its going to be upper/lower -case
+					Boolean NextUpper = gen.nextBoolean();
+					Boolean NextType = gen.nextBoolean();
+					
+					//NextType = True = Letter
+					if (NextType == true){
 						
-						//Choses a random char in alphabet and puts it into array
-						//Makes sure the char is gonna be uppercase
-						Alphabet = Alphabet.toUpperCase();
-						Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()-1));
-						UCC++;
+						//NextUpper = True = Uppercase
+						if ((NextUpper == true && UCC < 3) || (NextUpper == false && LCC == 3 && UCC < 3)){
+							
+							//Choses a random char in alphabet and puts it into array
+							//Makes sure the char is gonna be uppercase
+							Alphabet = Alphabet.toUpperCase();
+							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()-1));
+							UCC++;
+							
+						} 
+						else if (LCC < 3) {
+							
+							//Same as uppercase but ensures lowercase
+							Alphabet = Alphabet.toLowerCase();
+							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()-1));
+							LCC++;
+							
+						}
 						
-					} 
-					else if (LCC < 3) {
+					}
+					else if (NC < 4) {
 						
-						//Same as uppercase but ensures lowercase
-						Alphabet = Alphabet.toLowerCase();
-						Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()-1));
-						LCC++;
+						//If the next char isnt gonna be a letter its gonna be a number
+						Pass[i] = Numbers.charAt(gen.nextInt(Numbers.length()-1));
+						NC++;
+						
+					}
+					
+					//If spot in array is still empty it tries again
+					GhostLetter = false;
+					
+					if (Pass[i] == 0){
+						
+						GhostLetter = true;
 						
 					}
 					
 				}
-				else if (NC < 4) {
+		
 					
-					//If the next char isnt gonna be a letter its gonna be a number
-					Pass[i] = Numbers.charAt(gen.nextInt(Numbers.length()-1));
-					NC++;
-					
-				}
-				
 			}
-			
+								
 			//Puts the password together as a string
 			for (int j = 0; j < 10; j++){
 				
 				PasswordFull = PasswordFull + Pass[j];
-				GhostLetter = false;
-				
-				//If there is a whitespace the loop will keep on going
-				if (Character.isWhitespace(Pass[j]) == true){
-					
-					GhostLetter = true;
-					
-				}
 				
 			}
-	
-		}
 				
 		return PasswordFull;
 		
