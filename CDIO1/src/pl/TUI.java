@@ -12,8 +12,6 @@ public class TUI {
 	
 	MiddleMan connector = new MiddleMan();
 	Scanner input = new Scanner(System.in); //Make new scanner for user inputs
-	private int ID = 0;
-
 	
 	public static void main(String [] args) throws DALException{
 		TUI textInterface = new TUI();
@@ -83,14 +81,14 @@ public class TUI {
 		
 		while (TooLongName == true){
 			
-			Name = input.nextLine();
-			if (Name.length() <= 20){
+			Name = input.next();
+			if (Name.length() >= 2 && Name.length() <= 20){
 				
 				TooLongName = false;
 				
 			} else {
 				
-				System.out.println("Username too long, try again: ");
+				System.out.println("Only 2-20 signs, try again: ");
 				
 			}
 			
@@ -102,14 +100,14 @@ public class TUI {
 		
 		while (TooLongIni == true){
 			
-			Ini = input.nextLine();
-			if (Ini.length() <= 3){
+			Ini = input.next();
+			if (Ini.length() >= 2 && Ini.length() <= 4){
 				
 				TooLongIni = false;
 				
 			} else {
 				
-				System.out.println("Too many initials, try again: ");
+				System.out.println("Only 2-4 intitals, try again: ");
 				
 			}
 			
@@ -134,6 +132,25 @@ public class TUI {
 			
 		}
 		
+		System.out.println("Please provide desired ID: ");
+		Boolean TooLongID = true;
+		int ID = -1;
+		
+		while (TooLongID == true){
+			
+			ID = input.nextInt();
+			if (ID <= 99){
+				
+				TooLongID = false;
+				
+			} else {
+				
+				System.out.println("Only a number range 0-99, try again: ");
+				
+			}
+			
+		}
+		
 		user.setUserId(ID);
 		user.setUserName(Name);
 		user.setPassword(Pass.Pass());
@@ -141,8 +158,6 @@ public class TUI {
 		user.setCpr(Cpr);
 		
 		connector.createUser(user);
-		
-		ID++;
 		
 	}
 	
