@@ -11,6 +11,7 @@ import pl.PassGen;
 public class TUI {
 	
 	MiddleMan connector = new MiddleMan();
+	Scanner input = new Scanner(System.in); //Make new scanner for user inputs
 	
 	public static void main(String [] args) throws DALException{
 		TUI textInterface = new TUI();
@@ -21,7 +22,6 @@ public class TUI {
 	}
 	
 	public void menu() throws DALException{
-		Scanner input = new Scanner(System.in); //Make new scanner for user inputs
 		
 		String choice = "";
 		boolean looping = true;
@@ -77,10 +77,29 @@ public class TUI {
 		UserDTO user = new UserDTO();
 		PassGen Pass = new PassGen();
 		
+		System.out.println("Please provide a username: ");
+		Boolean TooLong = true;
+		String Name = "";
+		
+		while (TooLong == true){
+			
+			Name = input.nextLine();
+			if (Name.length() <= 20){
+				
+				TooLong = false;
+				
+			} else {
+				
+				System.out.println("Username too long, try again");
+				
+			}
+			
+		}
+		
 		user.setUserId(ID);
-		user.setUserName("Filler");
+		user.setUserName(Name);
 		user.setPassword(Pass.Pass());
-		user.setIni("F");
+		user.setIni("Filler");
 		user.setCpr(123);
 		
 		connector.createUser(user);
@@ -109,7 +128,7 @@ public class TUI {
 	
 	public void deleteUser() throws DALException{
 		
-		connector.deleteUser(0);
+		connector.deleteUser(input.nextInt());
 		
 	}
 	
