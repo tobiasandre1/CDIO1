@@ -12,6 +12,8 @@ public class TUI {
 	
 	MiddleMan connector = new MiddleMan();
 	Scanner input = new Scanner(System.in); //Make new scanner for user inputs
+	private int ID = 0;
+
 	
 	public static void main(String [] args) throws DALException{
 		TUI textInterface = new TUI();
@@ -71,26 +73,62 @@ public class TUI {
 	}
 	
 	public void createUser() throws DALException{
-		
-		int ID = 0;
-		
+				
 		UserDTO user = new UserDTO();
 		PassGen Pass = new PassGen();
 		
 		System.out.println("Please provide a username: ");
-		Boolean TooLong = true;
+		Boolean TooLongName = true;
 		String Name = "";
 		
-		while (TooLong == true){
+		while (TooLongName == true){
 			
 			Name = input.nextLine();
 			if (Name.length() <= 20){
 				
-				TooLong = false;
+				TooLongName = false;
 				
 			} else {
 				
-				System.out.println("Username too long, try again");
+				System.out.println("Username too long, try again: ");
+				
+			}
+			
+		}
+		
+		System.out.println("Please provide initials: ");
+		Boolean TooLongIni = true;
+		String Ini = "";
+		
+		while (TooLongIni == true){
+			
+			Ini = input.nextLine();
+			if (Ini.length() <= 3){
+				
+				TooLongIni = false;
+				
+			} else {
+				
+				System.out.println("Too many initials, try again: ");
+				
+			}
+			
+		}
+		
+		System.out.println("Please provide cpr: ");
+		Boolean TooLongCpr = true;
+		String Cpr = "";
+		
+		while (TooLongCpr == true){
+			
+			Cpr = input.next();
+			if (Cpr.length() == 10){
+				
+				TooLongCpr = false;
+				
+			} else {
+				
+				System.out.println("Wrong input, try again: ");
 				
 			}
 			
@@ -99,8 +137,8 @@ public class TUI {
 		user.setUserId(ID);
 		user.setUserName(Name);
 		user.setPassword(Pass.Pass());
-		user.setIni("Filler");
-		user.setCpr(123);
+		user.setIni(Ini);
+		user.setCpr(Cpr);
 		
 		connector.createUser(user);
 		
