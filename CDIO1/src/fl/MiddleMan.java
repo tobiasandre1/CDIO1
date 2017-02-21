@@ -15,9 +15,25 @@ public class MiddleMan {
 		return data.getUserList();
 	}
 	
-	public void createUser(UserDTO user) throws DALException{
+	public Boolean createUser(UserDTO user) throws DALException{
+		
+		List<UserDTO> List = data.getUserList();
+		UserDTO userFake = user;
+		
+		for (int q = 0; q < List.size(); q++){
+			
+			UserDTO userCompared = List.get(q);
+			
+			if (userFake.getUserId() == userCompared.getUserId()){
+				
+				return true;
+				
+			}
+			
+		}
 		
 		data.createUser(user);
+		return false;
 		
 	}
 	

@@ -133,34 +133,47 @@ public class TUI {
 		}
 		
 		System.out.println("Please provide desired ID: ");
-		Boolean TooLongID = true;
-		int ID = -1;
+		Boolean CheckID = true;
+		while(CheckID == true){
 		
-		while (TooLongID == true){
+			Boolean TooLongID = true;
+			int ID = -1;
 			
-			ID = input.nextInt();
-			if (ID <= 99){
+			while (TooLongID == true){
 				
-				TooLongID = false;
+				ID = input.nextInt();
+				if (ID >= 11 && ID <= 99){
+					
+					TooLongID = false;
+					
+				} else {
+					
+					System.out.println("Only a number range 11-99, try again: ");
+					
+				}
 				
-			} else {
+			}
+			
+			user.setUserId(ID);
+			user.setUserName(Name);
+			user.setPassword(Pass.Pass());
+			user.setIni(Ini);
+			user.setCpr(Cpr);
+			
+			CheckID = connector.createUser(user);
+			
+			if (CheckID == true){
 				
-				System.out.println("Only a number range 0-99, try again: ");
+				System.out.println("ID already taken, try again");
 				
 			}
 			
 		}
-		
-		user.setUserId(ID);
-		user.setUserName(Name);
-		user.setPassword(Pass.Pass());
-		user.setIni(Ini);
-		user.setCpr(Cpr);
-		
-		connector.createUser(user);
-		
+
+			
 	}
-	
+		
+			
 	public void showUsers() throws DALException{
 		List<UserDTO> list = connector.getUserList();
 		UserDTO temp;
