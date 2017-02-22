@@ -24,7 +24,11 @@ public class UserDAO1 implements IUserDAO{
 	}
 	
 	public void updateUser(UserDTO user){
-		
+		for(int i = 0; i < userList.size(); i++){
+			if(userList.get(i).getUserId() == user.getUserId()){
+				userList.set(i, user);
+			}
+		}
 	}
 	
 	public void deleteUser(int userId){

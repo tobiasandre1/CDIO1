@@ -37,7 +37,35 @@ public class MiddleMan {
 		
 	}
 	
-	public void updateUser(UserDTO user){
+	public UserDTO getUser(int userId) throws DALException{
+		UserDTO tempData = null;
+		for(int i = 0; i < data.getUserList().size(); i++){
+			if(data.getUserList().get(i).getUserId() == userId){
+				tempData = data.getUserList().get(i);
+			}
+		}
+		return tempData;
+	}
+	public void updateUserName(int userId, String newName) throws DALException{
+		getUser(userId).setUserName(newName);
+		data.updateUser(getUser(userId));
+	}
+	public void updatePassword(int userId, String newPassword) throws DALException{
+		getUser(userId).setPassword(newPassword);
+		data.updateUser(getUser(userId));
+	}
+	public void updateINI(int userId, String newINI) throws DALException{
+		getUser(userId).setIni(newINI);
+		data.updateUser(getUser(userId));
+	}
+	public void updateCPR(int userId, String newCPR) throws DALException{
+		getUser(userId).setCpr(newCPR);
+		data.updateUser(getUser(userId));
+	}
+	public void addRole(int userId, String newCPR) throws DALException{
+		
+	}
+	public void removeRole(int userId, String removeRole) throws DALException{
 		
 	}
 	

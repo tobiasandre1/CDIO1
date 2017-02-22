@@ -188,9 +188,64 @@ public class TUI {
 		System.out.println("\n");
 	}
 	
-	public void updateUser(){
+public void updateUser() throws DALException{
 		
-	}
+		Scanner updateInput = new Scanner(System.in);
+		System.out.println("Type in the userID you want to update");
+		int choiceID = updateInput.nextInt();
+		
+		boolean nextUpdate = true;
+		
+		while(nextUpdate){
+			//system message
+			System.out.println("You are updating data for userID: " + choiceID);
+			System.out.println("Select an option by typing the corresponding number and pressing \"enter\"");
+			System.out.println("1. Update username");
+			System.out.println("2. Update password");
+			System.out.println("3. Update initials");
+			System.out.println("4. Update CPR");
+			System.out.println("5. Add role");
+			System.out.println("6. Remove role");
+			System.out.println("7. Main menu");
+			
+			String choice = updateInput.next(); //Assign this value as a choice
+			
+			switch(choice){
+			case "1": System.out.println("Type in new username. Username must be between 2 and 20 characters");
+			  		choice = updateInput.next();
+					connector.updateUserName(choiceID, choice);
+					break;
+			case "2": System.out.println("Type in new password");
+					choice = updateInput.next();
+					connector.updatePassword(choiceID, choice);
+					break;
+			case "3": System.out.println("Type in new initials. Must be between 2 and 4 characters");
+					choice = updateInput.next();
+					connector.updateINI(choiceID, choice);
+					break;
+			case "4": System.out.println("Type in new CPR. Must be 10 characters long");
+					choice = updateInput.next();
+					connector.updateCPR(choiceID, choice);
+					break;
+			case "5": System.out.println("Type in the role you want to add");
+					System.out.println("The roles are: Admin, Pharmacist, Foreman, Operator");
+					choice = updateInput.next();
+					connector.addRole(choiceID, choice);
+					break;
+			case "6": System.out.println("Type in the role you want to remove");
+					System.out.println("The roles are: Admin, Pharmacist, Foreman, Operator");
+					choice = updateInput.next();
+					connector.removeRole(choiceID, choice);
+					break;
+			case "7": nextUpdate = false;
+					break;
+			default: System.out.println("You entered " + choice + " which is not a valid choice.\n");
+					break;
+				
+			}
+			
+		}
+}
 	
 	public void deleteUser() throws DALException{
 		
