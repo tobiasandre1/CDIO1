@@ -1,5 +1,6 @@
 package pl;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -190,6 +191,7 @@ public class TUI {
 	
 public void updateUser() throws DALException{
 		
+		String[] validRoles = new String[]{"Admin", "Pharmacist", "Foreman", "Operator"};
 		Scanner updateInput = new Scanner(System.in);
 		System.out.println("Type in the userID you want to update");
 		int choiceID = updateInput.nextInt();
@@ -211,33 +213,67 @@ public void updateUser() throws DALException{
 			String choice = updateInput.next(); //Assign this value as a choice
 			
 			switch(choice){
-			case "1": System.out.println("Type in new username. Username must be between 2 and 20 characters");
-			  		choice = updateInput.next();
+			case "1": System.out.println("Type in new username. Username must be between 2 and 20 characters"); //update username
+					Boolean invalidName = true;
+					while (invalidName == true){
+						choice = updateInput.next();
+						if (choice.length() >= 2 && choice.length() <= 20){
+							invalidName = false;
+						} else {
+							System.out.println("Invalid username. Must be between 2-20 characters, try again: ");	
+						}	
+					}
 					connector.updateUserName(choiceID, choice);
 					break;
-			case "2": System.out.println("Type in new password");
+			case "2": System.out.println("Type in new password");											//update password
 					choice = updateInput.next();
 					connector.updatePassword(choiceID, choice);
 					break;
-			case "3": System.out.println("Type in new initials. Must be between 2 and 4 characters");
-					choice = updateInput.next();
+			case "3": System.out.println("Type in new initials. Must be between 2 and 4 characters");		//update initials
+					Boolean invalidINI = true;
+					while (invalidINI == true){
+						choice = updateInput.next();
+						if (choice.length() >= 2 && choice.length() <= 4){
+							invalidINI = false;
+						} else {
+							System.out.println("Only 2-4 intitals, try again: ");
+						}
+					}
 					connector.updateINI(choiceID, choice);
 					break;
-			case "4": System.out.println("Type in new CPR. Must be 10 characters long");
-					choice = updateInput.next();
+			case "4": System.out.println("Type in new CPR. Must be 10 characters long");	//update CPR
+					Boolean invalidCPR = true;
+					while (invalidCPR == true){
+						choice = updateInput.next();
+						if (choice.length() == 10){
+							invalidCPR = false;
+						} else {
+							System.out.println("Invalid input, CPR must be 10 characters long. Try again: ");
+						}
+					}
 					connector.updateCPR(choiceID, choice);
 					break;
-			case "5": System.out.println("Type in the role you want to add");
-					System.out.println("The roles are: Admin, Pharmacist, Foreman, Operator");
-					choice = updateInput.next();
+			case "5": System.out.println("Type in the role you want to add");			//add role
+					System.out.println("The roles are: " + Arrays.toString(validRoles));
+					boolean invalidRole = true;
+					while(invalidRole == true){
+						choice = updateInput.next();
+						if(Arrays.asList(validRoles).contains(choice)){
+							invalidRole = false;
+						} else {
+							System.out.println("Invalid role.");
+							System.out.println("The roles are: " + Arrays.toString(validRoles));
+						}
+					}
 					connector.addRole(choiceID, choice);
 					break;
-			case "6": System.out.println("Type in the role you want to remove");
-					System.out.println("The roles are: Admin, Pharmacist, Foreman, Operator");
+			case "6": System.out.println("Type in the role you want to remove");		//remove role
+					System.out.println("The roles are: " + Arrays.toString(validRoles));
 					choice = updateInput.next();
 					connector.removeRole(choiceID, choice);
 					break;
-			case "7": nextUpdate = false;
+			case "7": nextUpdate = false;												//back to main menu
+					updateInput.close();
 					break;
 			default: System.out.println("You entered " + choice + " which is not a valid choice.\n");
 					break;
