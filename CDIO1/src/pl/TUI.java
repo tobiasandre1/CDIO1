@@ -197,7 +197,6 @@ public void updateUser() throws DALException{
 		int choiceID = updateInput.nextInt();
 		
 		boolean nextUpdate = true;
-		
 		while(nextUpdate){
 			//system message
 			System.out.println("You are updating data for userID: " + choiceID);
