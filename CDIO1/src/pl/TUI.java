@@ -77,7 +77,7 @@ public class TUI {
 		PassGen Pass = new PassGen();
 		
 		System.out.println("Please provide a username: ");
-		Boolean TooLongName = true;
+		boolean TooLongName = true;
 		String Name = "";
 		
 		while (TooLongName == true){
@@ -96,7 +96,7 @@ public class TUI {
 		}
 		
 		System.out.println("Please provide initials: ");
-		Boolean TooLongIni = true;
+		boolean TooLongIni = true;
 		String Ini = "";
 		
 		while (TooLongIni == true){
@@ -115,29 +115,40 @@ public class TUI {
 		}
 		
 		System.out.println("Please provide cpr: ");
-		Boolean TooLongCpr = true;
+		boolean invalidCPR = true;
+		boolean invalidWord = false;
 		String Cpr = "";
-		
-		while (TooLongCpr == true){
-			
+		char[] legalChars = {'1','2','3','4','5','6','7','8','9','0'};
+		while (invalidCPR == true){
 			Cpr = input.next();
-			if (Cpr.length() == 10){
+			for(int i = 0; i < Cpr.length(); i++){
+				boolean legalChar = false;
+				for(int j = 0; j < legalChars.length; j++){
+					if(Cpr.charAt(i) == legalChars[j]){
+						legalChar = true;
+					}
+				}
+				if(legalChar == false){
+					invalidWord = true;
+				}
+			}
+			if (Cpr.length() == 10 && invalidWord == false){
 				
-				TooLongCpr = false;
+				invalidCPR = false;
 				
 			} else {
 				
-				System.out.println("Wrong input, try again: ");
+				System.out.println("Invalid input, try again: ");
 				
 			}
 			
 		}
 		
 		System.out.println("Please provide desired ID: ");
-		Boolean CheckID = true;
+		boolean CheckID = true;
 		while(CheckID == true){
 		
-			Boolean TooLongID = true;
+			boolean TooLongID = true;
 			int ID = -1;
 			
 			while (TooLongID == true){
