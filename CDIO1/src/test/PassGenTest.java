@@ -10,7 +10,8 @@ import pl.PassGen;
  * 
  * test1 tests generation, set and get
  * 
- * test2 tests if generated passwords is validt (20000 times)
+ * test2 tests if generated passwords is validt (20000 passwords)
+ * and counts the amount of validt and invalidt passwords /20000
  * 
  * @author von Scholten
  *
