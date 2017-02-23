@@ -283,8 +283,15 @@ public void updateUser() throws DALException{
 }
 	
 	public void deleteUser() throws DALException{
-		
-		connector.deleteUser(input.nextInt());
+		System.out.println("Type in the userID you want to delete");
+		if(connector.deleteUser(input.nextInt()) == true){ 			//True if a user was removed
+			System.out.println("The user was succesfully deleted");
+			System.out.println("");
+		} 
+		else{
+			System.out.println("No user with the given userID was found");
+			System.out.println("");
+		}
 		
 	}
 	

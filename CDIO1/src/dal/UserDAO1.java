@@ -30,14 +30,16 @@ public class UserDAO1 implements IUserDAO{
 			}
 		}
 	}
-	
-	public void deleteUser(int userId){
+	//returns false if no user was removed
+	public boolean deleteUser(int userId){
+		boolean userRemoved = false;
 		for(int i = 0; i < userList.size(); i++){
 			if(userList.get(i).getUserId() == userId){
 				userList.remove(i);
+				userRemoved = true;
 			}
 		}
-		
+		return userRemoved;
 	}
 
 }

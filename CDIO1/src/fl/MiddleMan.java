@@ -62,17 +62,21 @@ public class MiddleMan {
 		getUser(userId).setCpr(newCPR);
 		data.updateUser(getUser(userId));
 	}
-	public void addRole(int userId, String newCPR) throws DALException{
-		
+	public void addRole(int userId, String newRole) throws DALException{
+		getUser(userId).addRole(newRole);
+		data.updateUser(getUser(userId));
 	}
 	public void removeRole(int userId, String removeRole) throws DALException{
-		
+		getUser(userId).removeRole(removeRole);
+		data.updateUser(getUser(userId));
 	}
-	
-	public void deleteUser(int userId) throws DALException{
-		
-		data.deleteUser(userId);
-		
+	//returns false if no user was removed
+	public boolean deleteUser(int userId) throws DALException{
+		boolean userRemoved = false;
+		if(data.deleteUser(userId) == true){
+			userRemoved = true;
+		}
+		return userRemoved;
 	}
 }
 
