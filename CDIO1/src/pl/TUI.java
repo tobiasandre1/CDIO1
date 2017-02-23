@@ -116,10 +116,10 @@ public class TUI {
 		
 		System.out.println("Please provide cpr: ");
 		boolean invalidCPR = true;
-		boolean invalidWord = false;
 		String Cpr = "";
 		char[] legalChars = {'1','2','3','4','5','6','7','8','9','0'};
 		while (invalidCPR == true){
+			boolean invalidWord = false;
 			Cpr = input.next();
 			for(int i = 0; i < Cpr.length(); i++){
 				boolean legalChar = false;
