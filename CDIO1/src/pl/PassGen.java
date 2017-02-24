@@ -10,68 +10,68 @@ public class PassGen {
 		//Random for deciding Uppercase, Lowercase, next is number? etc.
 		//Char array where all letters and numbers will be stored before final result
 		Random gen = new Random();
-		char[] Pass  = new char[10];
+		char[] pass  = new char[10];
 				
 		//Strings where numbers and letters gets "taken" from
-		String Alphabet = "abcdefghijklmnopqrstuvwxyz";
-		final String Numbers = "1234567890";
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		final String numbers = "1234567890";
 
 		//UpperCaseCounter, LowerCaseCounter and NumberCounter. 
 		//To ensure 3 upper/lower -case letters and 4 numbers
-		int UCC = 0, LCC = 0, NC = 0;
-		Boolean GhostLetter = true;
+		int ucc = 0, lcc = 0, nc = 0;
+		Boolean ghostLetter = true;
 		
 		//Final result
-		String PasswordFull = "";
+		String passwordFull = "";
 			
 			for (int i = 0; i < 10; i++){
 				
 				//Loop for failsafe
-				GhostLetter = true;
-				while (GhostLetter == true){
+				ghostLetter = true;
+				while (ghostLetter == true){
 					
 					//Decides if next char is going to be a number or letter (NextType), and if its a letter 
 					//- if its going to be upper/lower -case
-					Boolean NextUpper = gen.nextBoolean();
-					Boolean NextType = gen.nextBoolean();
+					Boolean nextUpper = gen.nextBoolean();
+					Boolean nextType = gen.nextBoolean();
 					
 					//NextType = True = Letter
-					if (NextType == true){
+					if (nextType == true){
 						
 						//NextUpper = True = Uppercase
-						if ((NextUpper == true && UCC < 3) || (NextUpper == false && LCC == 3 && UCC < 3)){
+						if ((nextUpper == true && ucc < 3) || (nextUpper == false && lcc == 3 && ucc < 3)){
 							
 							//Choses a random char in alphabet and puts it into array
 							//Makes sure the char is gonna be uppercase
-							Alphabet = Alphabet.toUpperCase();
-							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()));
-							UCC++;
+							alphabet = alphabet.toUpperCase();
+							pass[i] = alphabet.charAt(gen.nextInt(alphabet.length()));
+							ucc++;
 							
 						} 
-						else if (LCC < 3) {
+						else if (lcc < 3) {
 							
 							//Same as uppercase but ensures lowercase
-							Alphabet = Alphabet.toLowerCase();
-							Pass[i] = Alphabet.charAt(gen.nextInt(Alphabet.length()));
-							LCC++;
+							alphabet = alphabet.toLowerCase();
+							pass[i] = alphabet.charAt(gen.nextInt(alphabet.length()));
+							lcc++;
 							
 						}
 						
 					}
-					else if (NC < 4) {
+					else if (nc < 4) {
 						
 						//If the next char isnt gonna be a letter its gonna be a number
-						Pass[i] = Numbers.charAt(gen.nextInt(Numbers.length()));
-						NC++;
+						pass[i] = numbers.charAt(gen.nextInt(numbers.length()));
+						nc++;
 						
 					}
 					
 					//If spot in array is still empty it tries again
-					GhostLetter = false;
+					ghostLetter = false;
 					
-					if (Pass[i] == 0){
+					if (pass[i] == 0){
 						
-						GhostLetter = true;
+						ghostLetter = true;
 						
 					}
 					
@@ -83,11 +83,11 @@ public class PassGen {
 			//Puts the password together as a string
 			for (int j = 0; j < 10; j++){
 				
-				PasswordFull = PasswordFull + Pass[j];
+				passwordFull = passwordFull + pass[j];
 				
 			}
 				
-		return PasswordFull;
+		return passwordFull;
 		
 	}
 
