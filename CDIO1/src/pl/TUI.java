@@ -146,41 +146,47 @@ public class TUI {
 		}
 
 		System.out.println("Please provide desired ID: ");
-		boolean CheckID = true;
-		while (CheckID == true) {
-
-			boolean TooLongID = true;
-			int ID = -1;
-
-			while (TooLongID == true) {
-
-				ID = input.nextInt();
-				if (ID >= 11 && ID <= 99) {
-
-					TooLongID = false;
-
-				} else {
-
-					System.out.println("Only a number range 11-99, try again: ");
-
+		boolean IDAccept = false;
+				
+		while (IDAccept == false) {
+			boolean unavailableID = false;							
+			boolean nonInt = false;
+			boolean outOfBoundsID = false;
+			
+			String ID = "";
+			ID = input.next();
+			
+			for(int i = 0; i < ID.length(); i++){		//checking if input contains non-integers
+				if(!Character.isDigit(ID.charAt(i))){
+					nonInt = true;
 				}
-
 			}
-
-			user.setUserId(ID);
-			user.setUserName(Name);
-			user.setPassword(Pass.Pass());
-			user.setIni(Ini);
-			user.setCpr(Cpr);
-
-			CheckID = connector.createUser(user);
-
-			if (CheckID == true) {
-
-				System.out.println("ID already taken, try again");
-
+			if(nonInt == true){
+				System.out.println("ID must be an integer");
 			}
-
+			if(nonInt == false){
+				int choiceToInt = Integer.parseInt(ID);
+				if(choiceToInt <= 11 || choiceToInt >= 99){
+					outOfBoundsID = true;
+					System.out.println("Only integers in the range 11-99 are allowed");
+				}
+			}
+			if(nonInt == false && outOfBoundsID == false){
+				user.setUserId(Integer.parseInt(ID));
+				user.setUserName(Name);
+				user.setPassword(Pass.Pass());
+				user.setIni(Ini);
+				user.setCpr(Cpr);
+	
+				unavailableID = connector.createUser(user);
+			
+				if (unavailableID == true) {
+					System.out.println("The ID is already in use, try again");
+				}
+			}
+			if(unavailableID == false && nonInt == false && outOfBoundsID == false){
+				IDAccept = true;
+			}
 		}
 
 	}
@@ -304,19 +310,35 @@ public class TUI {
 
 		}
 	}
-
 	public void deleteUser() throws DALException {
-		System.out.println("Type in the userID you want to delete");
-		if (connector.deleteUser(input.nextInt()) == true) { // True if a user
+
+		String deleteChoice = "";
+		boolean invalidDel = true;
+		
+		while(invalidDel == true){
+			System.out.println("Type in the userID you want to delete");
+			deleteChoice = input.next();
+			invalidDel = false;
+			for(int i = 0; i < deleteChoice.length(); i++){
+				if(!Character.isDigit(deleteChoice.charAt(i))){
+					invalidDel = true;
+				}
+			}
+			System.out.println("Invalid userID");
+		}
+		int choiceToInt = Integer.parseInt(deleteChoice); //converts choice to integer
+			 
+		if (connector.deleteUser(choiceToInt) == true) { // True if a user
 																// was removed
-			System.out.println("The user was succesfully deleted");
+			System.out.println("The user was successfully deleted");
 			System.out.println("");
 		} else {
 			System.out.println("No user with the given userID was found");
 			System.out.println("");
-		}
 
+		}
 	}
+	
 
 	public void endProgram() {
 
