@@ -78,15 +78,15 @@ public class TUI {
 		PassGen Pass = new PassGen();
 
 		System.out.println("Please provide a username: ");
-		boolean TooLongName = true;
-		String Name = "";
+		boolean tooLongName = true;
+		String name = "";
 
-		while (TooLongName == true) {
+		while (tooLongName == true) {
 
-			Name = input.next();
-			if (Name.length() >= 2 && Name.length() <= 20) {
+			name = input.next();
+			if (name.length() >= 2 && name.length() <= 20) {
 
-				TooLongName = false;
+				tooLongName = false;
 
 			} else {
 
@@ -97,15 +97,15 @@ public class TUI {
 		}
 
 		System.out.println("Please provide initials: ");
-		boolean TooLongIni = true;
+		boolean tooLongIni = true;
 		String Ini = "";
 
-		while (TooLongIni == true) {
+		while (tooLongIni == true) {
 
 			Ini = input.next();
 			if (Ini.length() >= 2 && Ini.length() <= 4) {
 
-				TooLongIni = false;
+				tooLongIni = false;
 
 			} else {
 
@@ -173,7 +173,7 @@ public class TUI {
 			}
 			if(nonInt == false && outOfBoundsID == false){
 				user.setUserId(Integer.parseInt(ID));
-				user.setUserName(Name);
+				user.setUserName(name);
 				user.setPassword(Pass.Pass());
 				user.setIni(Ini);
 				user.setCpr(Cpr);
