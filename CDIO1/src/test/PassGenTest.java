@@ -8,10 +8,10 @@ import pl.PassGen;
 /**
  * Tests password generation and validility of passwords generated
  * 
- * test1 tests generation, set and get
- * 
- * test2 tests if generated passwords is validt (20000 passwords)
- * and counts the amount of validt and invalidt passwords /20000
+ * The program shall auto-generate a password according to following rules 6 or
+ * more characters with at least 3 of the following 4 categories lowercase
+ * letters (a to z) uppercase letters (A to Z) digits (0 to 9) special
+ * characters {'.', '-', '_', '+', '!', '?', '='}
  * 
  * @author von Scholten
  *
@@ -20,10 +20,13 @@ import pl.PassGen;
 public class PassGenTest {
 	UserDTO testUser = new UserDTO();
 	PassGen testPassGen = new PassGen();
-	int lc, uc, d, v, iv;
+	int amountOfTest = 100000;
+	int lowercase, uppercase, digit, valid, invalid;
 
 	@Test
 	public void test1() {
+
+		System.out.println("-----running test1-----");
 
 		// tests set and get
 		testUser.setPassword("123abcABC#?!!");
@@ -38,6 +41,7 @@ public class PassGenTest {
 
 	@Test
 	public void test2() {
+		System.out.println("-----running test2-----");
 
 		// generates and splits password string into an array
 		String[] testValidate = testPassGen.Pass().split("(?!^)");
@@ -45,60 +49,53 @@ public class PassGenTest {
 		// asserts password lenght must be 10 characters long
 		assertEquals(10, testValidate.length);
 
-		v = 0; //
-		iv = 0;
+		valid = 0; // valid pass. count
+		invalid = 0; // invalid pass. count
 
-		for (int j = 0; j < 20000; j++) {
-			lc = 0; // lowercase count
-			uc = 0; // uppercase count
-			d = 0; // digit count
+		for (int j = 0; j < amountOfTest; j++) {
+			lowercase = 0; // lowercase count
+			uppercase = 0; // uppercase count
+			digit = 0; // digit count
 
 			/*
 			 * checking character properties
 			 */
 
 			for (int i = 0; i < testValidate.length; i++) {
-				// System.out.println(testValidate[i]);
 				char ch = testValidate[i].charAt(0);
 
 				// check if ch is a lowercase letter
 				if (Character.isLowerCase(ch)) {
-					// System.out.println("this is a lowercase letter");
-					lc++;
+					lowercase++;
 				}
 				// check if ch is a uppercase letter
 				if (Character.isUpperCase(ch)) {
-					// System.out.println("this is a uppercase letter");
-					uc++;
+					uppercase++;
 				}
 				// check if ch is a digit
 				if (Character.isDigit(ch)) {
-					// System.out.println("this is a digit");
-					d++;
+					digit++;
 				}
 				// check if ch is a whitespace
 				if (Character.isSpaceChar(ch)) {
-					// System.err.println("this is af whitespace");
 				}
 
 			}
-			// System.out.println("lowercase count: " + lc);
-			// System.out.println("uppercase count: " + uc);
-			// System.out.println("digit count: " + d);
 
-			if (lc >= 3 && uc >= 3 && d >= 3) {
-				// System.out.println("is validt");
-				v++;
+			if (lowercase > 1 && uppercase > 1 && digit > 1) {
+				valid++;
 
 			} else {
-				iv++;
-				// System.err.println("is invalidt");
+				invalid++;
+				System.err.println("invalid password: " + testValidate);
 			}
 		}
 
-		assertEquals(20000, v);
-		System.out.println("validt pass count: " + v);
-		System.err.println("invalidt passs count: " + iv);
+		// asserts the expected result with the acutal result
+		assertEquals(amountOfTest, valid);
+		System.out.println("validt pass count: " + valid);
+		System.out.println("test passed");
+		if (invalid == 0)
+			System.err.println("invalidt passs count: " + invalid);
 	}
-
 }
