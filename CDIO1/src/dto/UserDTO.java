@@ -12,7 +12,7 @@ public class UserDTO implements Serializable{
 	private String ini;                 
 	private List<String> roles;
 	private String password;
-	private int cpr; 
+	private String cpr; 
 	//TODO Add relevant fields
 	
 	public UserDTO() {
@@ -55,6 +55,22 @@ public class UserDTO implements Serializable{
 	 */
 	public boolean removeRole(String role){
 		return this.roles.remove(role);
+	}
+	
+	public String getPassword(){
+		return this.password;
+	}
+	
+	public void setPassword(String word){
+		this.password = word;
+	}
+	
+	public String getCpr(){
+		return this.cpr;
+	}
+	
+	public void setCpr(String cpr){
+		this.cpr = cpr;
 	}
 
 	@Override
